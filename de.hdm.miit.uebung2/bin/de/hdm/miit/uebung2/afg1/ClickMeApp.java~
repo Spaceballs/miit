@@ -1,0 +1,69 @@
+package de.hdm.miit.uebung2.afg1;
+
+import java.awt.*;
+import java.awt.event.*;
+
+@SuppressWarnings("serial")
+public class ClickMeApp extends javax.swing.JFrame {
+
+	public ClickMeApp() {
+		super("ClickMe");
+		setContentPane(new DrawPane());
+		setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+		setSize(400, 400);
+		setVisible(true);
+	}
+
+	public static void main(String args[]) {
+		new ClickMeApp();
+	}
+}
+
+// create a component that you can actually draw on.
+@SuppressWarnings("serial")
+class DrawPane extends javax.swing.JPanel implements MouseListener {
+	private int x = -1, y = -1;
+	private static int RADIUS = 7;
+
+	public DrawPane() {
+		addMouseListener(this);
+	}
+
+	public void drawBackground(Graphics g) {
+		// draw a 2 line blue border on a white background
+		g.setColor(Color.white);
+		g.fillRect(0, 0, this.getSize().width, this.getSize().height);
+
+		g.setColor(Color.black);
+		g.drawRect(0, 0, this.getSize().width-1, this.getSize().height-1);
+	}
+
+	public void paint(Graphics g) {
+		// draw the spot
+		if (x != -1) {
+			drawBackground(g);
+			g.setColor(Color.red);
+			g.fillOval(x - RADIUS, y - RADIUS, RADIUS * 2, RADIUS * 2);
+		} else {
+			drawBackground(g);
+		}
+	}
+
+	public void mousePressed(MouseEvent event) {
+		x = event.getX();
+		y = event.getY();
+		this.repaint();
+	}
+
+	public void mouseClicked(MouseEvent event) {
+	}
+
+	public void mouseReleased(MouseEvent event) {
+	}
+
+	public void mouseEntered(MouseEvent event) {
+	}
+
+	public void mouseExited(MouseEvent event) {
+	}
+}

@@ -1,0 +1,49 @@
+import java.awt.*;
+import java.awt.event.*;
+
+public class ClickMeApp extends javax.swing.JFrame {
+ public static void main(String args[]) {
+ new ClickMe();
+ }
+ public ClickMe() {
+ super("ClickMe");
+ setContentPane(new DrawPane());
+ setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+ setSize(400, 400);
+ setVisible(true);
+ }
+}
+class DrawPane extends javax.swing.JPanel implements MouseListener {
+public DrawPane() {
+ addMouseListener(this);
+ }
+ private int x = -1, y = -1;
+ private static int RADIUS = 7;
+ public void drawBackground(Graphics g) {
+ // draw a 2 line blue border on a white background
+ g.setColor(Color.white);
+ g.fillRect(0, 0, this.getSize().width - 1, this.getSize().height - 1);
+ g.setColor(Color.blue);
+ g.drawRect(1, 1, this.getSize().width - 3, this.getSize().height - 3);
+ g.drawRect(2, 2, this.getSize().width - 5, this.getSize().height - 5);
+ }
+ public void paint(Graphics g) {
+ // draw the spot
+ if (x != -1) {
+ drawBackground(g);
+ g.setColor(Color.red);
+ g.fillOval(x - RADIUS, y - RADIUS, RADIUS * 2, RADIUS * 2);
+ } else {
+ drawBackground(g);
+ }
+ }
+ public void mousePressed(MouseEvent event) {
+ x = event.getX();
+ y = event.getY();
+ this.repaint();
+ }
+ public void mouseClicked(MouseEvent event) {}
+ public void mouseReleased(MouseEvent event) {}
+ public void mouseEntered(MouseEvent event) {}
+ public void mouseExited(MouseEvent event) {}
+}

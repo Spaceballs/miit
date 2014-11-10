@@ -11,6 +11,11 @@ public class Account {
      */
     private int id = 0;
     /**
+     * Kontostand
+     */
+    private float balance = 0;
+    
+    /**
      * Kontoinhaber
      */
     private Customer owner = null;
@@ -21,6 +26,7 @@ public class Account {
      */
     public int getId() {
         return this.id;
+       
     }
 
     /**
@@ -97,4 +103,21 @@ public class Account {
         hash = 79 * hash + this.owner.getId();
         return hash;
     }
+    
+    /**
+     * Gibt den Kontostand zurück
+     * @return Aktueller Kontostand - Float
+     */
+    public float getBalance() {
+    	return this.balance;		
+	}
+    
+    /**
+     * Setzt den Kontostand anhand den gegeben werten.
+     * @param Float balance - Kontostand
+     */
+    public void setBalance(float balance) {
+		this.balance = balance;
+	}
+    
 }
