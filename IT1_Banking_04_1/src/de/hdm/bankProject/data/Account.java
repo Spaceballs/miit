@@ -5,7 +5,12 @@ package de.hdm.bankProject.data;
  * @author Thies
  */
 public class Account {
-
+	
+	/**
+	 * Zinssatz
+	 */
+	private float interestRate = 5;
+	
     /**
      * Kontonummer
      */
@@ -13,7 +18,7 @@ public class Account {
     /**
      * Kontostand
      */
-    private float balance = 0;
+    private double balance = 0;
     /**
      * Kontoinhaber
      */
@@ -23,7 +28,7 @@ public class Account {
      * Auslesen des Kontostands.
      * @return Kontostand
      */
-    public float getBalance() {
+    public double getBalance() {
         return this.balance;
     }
 
@@ -47,7 +52,7 @@ public class Account {
     /**
      * Setzen des Kontostands
      */
-    public void setBalance(float b) {
+    public void setBalance(double b) {
         this.balance = b;
     }
 
@@ -76,7 +81,7 @@ public class Account {
      * @param amount
      * @see makeWithdrawal(int amount)
      */
-    public void makeDeposit(float amount) {
+    public void makeDeposit(double amount) {
         this.balance = this.balance + amount;
     }
 
@@ -85,7 +90,7 @@ public class Account {
      * @param amount
      * @see makeDeposit(int amount)
      */
-    public void makeWithdrawal(float amount) {
+    public void makeWithdrawal(double amount) {
         this.balance = this.balance - amount;
     }
 
@@ -106,5 +111,13 @@ public class Account {
             }
         }
         return false;
+    }
+    
+    /**
+     * Methode zur Berechnung des Zinsertrags
+     * @return Double Zinsertrag
+     */
+    public double getInterest (){
+    	return (balance/ 100 )* interestRate;
     }
 }

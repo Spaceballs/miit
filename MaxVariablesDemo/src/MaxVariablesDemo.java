@@ -57,5 +57,22 @@ public class MaxVariablesDemo {
             System.out.println("The character " + aChar + " is lower case.");
         }
         System.out.println("The value of aBoolean is " + aBoolean);
+        
+        
+        
+        
+        
+        
+        String[] financialInstitutions = {
+        		 "Royal Bank of Scotland", "Bradford & Bingley",
+        		 "Barclays Bank", "Bank of New York", "ING Bank",
+        		 "Bank of China"};
+        System.out.println(financialInstitutions.length);
+        financialInstitutions[4];
+        
+        
+        
+        
+        
     }
 }
