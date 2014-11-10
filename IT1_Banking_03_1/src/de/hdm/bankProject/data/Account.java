@@ -95,6 +95,9 @@ public class Account {
         return false;
     }
 
+    /**
+     * 
+     */
     @Override
     public int hashCode() {
         int hash = 7;
