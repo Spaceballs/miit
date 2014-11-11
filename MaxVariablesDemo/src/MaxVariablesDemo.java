@@ -1,5 +1,11 @@
 public class MaxVariablesDemo {
-    public static void main(String args[]) {
+	
+	/**
+	 * Statisches "Feld" (Klassenvariable) die später den Array erhält.
+	 */
+    private static String[] financialInstitutions;
+
+	public static void main(String args[]) {
 
         // integers
         byte largestByte = Byte.MAX_VALUE; // 2 xy 7
@@ -63,12 +69,11 @@ public class MaxVariablesDemo {
         
         
         
-        String[] financialInstitutions = {
+        financialInstitutions = new String[] {
         		 "Royal Bank of Scotland", "Bradford & Bingley",
         		 "Barclays Bank", "Bank of New York", "ING Bank",
         		 "Bank of China"};
-        System.out.println(financialInstitutions.length);
-        financialInstitutions[4];
+
         
         
         
