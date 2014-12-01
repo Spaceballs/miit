@@ -26,6 +26,14 @@ public class Account {
      * Kontoinhaber
      */
     private Customer owner = null;
+    /**
+     * Transaktionen-Speicher
+     */
+    private Transaction[] transactions = new Transaction[50];
+    /**
+     * Transactionpointer
+     */
+    private int transactionPointer = 0;
 
     /**
      * Auslesen des Kontostands.

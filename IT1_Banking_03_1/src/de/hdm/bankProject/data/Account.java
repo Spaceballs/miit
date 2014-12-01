@@ -112,13 +112,6 @@ public class Account {
      * @return Aktueller Kontostand - Float
      */
     public float getBalance() {
-    	
-    	
-    	for (int i = 0; i < array.length; i++) {
-			
-		}
-    	
-    	
     	return this.balance;		
 	}
     

@@ -153,4 +153,33 @@ public class Bank {
             }
         }
     }
+    
+    /**
+     * Gibt alle Accounts der Bank aus
+     */
+    public void printAccounts() {	
+    	System.out.println(this.name);
+    	for (int i = 0; i < this.accounts.length; i++) {
+			System.out.println("Name: " 
+					+ this.accounts[i].getOwner().getFirstName() 
+					+ ", "
+					+ this.accounts[i].getOwner().getLastName()
+					+ "    KTNO: " + this.accounts[i].getId()
+					+ "    Kontostand: " + this.accounts[i].getBalance());
+		}
+	}
+    
+    /**
+     * Gibt das Account Objekt zurück 
+     * @param accountNumber
+     * @return
+     */
+    public Account getAccount(int accountNumber) {
+    	for (int i = 0; i < this.accounts.length; i++) {
+			if (this.accounts[i].getId() == accountNumber) {
+				return this.accounts[i];
+			}
+		}
+		return null;
+	}
 }
