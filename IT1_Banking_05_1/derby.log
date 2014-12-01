@@ -1,0 +1,8 @@
+----------------------------------------------------------------
+Thu Apr 14 08:19:20 CEST 2011:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.7.1.1 - (1040133): instance a816c00e-012f-52a9-f29d-000000bd63a8 
+on database directory C:\Users\alex\Documents\NetBeansProjects\IT1\IT1_Banking_05_2\banking  with class loader sun.misc.Launcher$AppClassLoader@11b86e7 
+Loaded from file:/C:/Users/alex/Documents/NetBeansProjects/IT1/IT1_Banking_05_2/derby.jar
+java.vendor=Sun Microsystems Inc.
+java.runtime.version=1.6.0_24-b07
+Database Class Loader started - derby.database.classpath=''
