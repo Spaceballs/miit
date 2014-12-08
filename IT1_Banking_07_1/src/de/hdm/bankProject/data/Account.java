@@ -150,6 +150,7 @@ public class Account {
      */
     public Transaction[] getTransactions() {
         throw new UnsupportedOperationException("Not yet implemented");
+        //TODO getTransactions()
     }
 
     /**
@@ -158,6 +159,7 @@ public class Account {
      */
     public int getTransactionPointer() {
         throw new UnsupportedOperationException("Not yet implemented");
+        //TODO getTransactionPointer()
     }
 
     /**
@@ -166,6 +168,7 @@ public class Account {
      */
     public double getCurrentBalance() {
         throw new UnsupportedOperationException("Not yet implemented");
+        //TODO getCurrentBalance()
     }
 
     /**
@@ -175,6 +178,7 @@ public class Account {
      */
     public void book(double amount, String text) {
         throw new UnsupportedOperationException("Not yet implemented");
+        //TODO book(double amount, String text)
     }
 
     /**
@@ -182,6 +186,7 @@ public class Account {
      */
     public void updateBalance() {
         throw new UnsupportedOperationException("Not yet implemented");
+        //TODO updateBalance()
     }
 
     /**
@@ -189,6 +194,7 @@ public class Account {
      */
     public void printAccountStatement() {
         throw new UnsupportedOperationException("Not yet implemented");
+        //TODO printAccountStatement()
     }
 
     /**
