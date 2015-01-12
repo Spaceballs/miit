@@ -1,5 +1,16 @@
 package de.hdm.bankProject;
 
+
+
+
+
+
+
+
+
+
+
+
 import de.hdm.bankProject.data.Account;
 import de.hdm.bankProject.data.Bank;
 import de.hdm.bankProject.data.Customer;
@@ -16,7 +27,7 @@ public class BankDemo {
          * Uebung 08 Aufgabe 1
          * Beheben Sie den Fehler im Code!
          */
-        Account myFirstAccount;
+        Account myFirstAccount = new Account();
         myFirstAccount.setOwner(new Customer("Sina", "Sappel"));
         System.out.println("Konteneigentuemer : " + myFirstAccount.getOwner());
         System.out.println("Kontonummer       : " + myFirstAccount.getId());
@@ -39,8 +50,8 @@ public class BankDemo {
          * Welche Fehler enthaelt der folgende Code?
          */
         Account myThirdAccount = new Account(new Customer("Bodo", "Bank"), 2346);
-        myThirdAccount.updateBalance = 5678.90;
-        double myBalance = myThirdAccount.getBalance;
+        myThirdAccount.setBalance(5678.90);
+        double myBalance = myThirdAccount.getBalance();
 
         /**
          * Uebung 08 Aufgabe 5
@@ -57,5 +68,16 @@ public class BankDemo {
          * Uebung 08 Aufgabe 6
          * Fuegen Sie bitte hier Ihren eigenen Code ein:
          */
+        
+        Bank ersteBank = new Bank("test bank e.V.");
+        Account ersterAccount = new Account(new Customer("Hans", "Wurst"), 1337);
+        ersteBank.addAccount(ersterAccount);
+        ersterAccount.book(2000, "Gehaltszahlung");
+        ersterAccount.updateBalance();
+        ersterAccount.printAccountStatement();
+        ersteBank.printAccounts();
+        
+        
+        
     }
 }
