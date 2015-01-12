@@ -110,7 +110,7 @@ public class Account {
      * @return Zinsertrag
      */
     public double getInterest() {
-        return balance * (interestRate / 100);
+        return this.getCurrentBalance() * (interestRate / 100);
     }
 
     /**
@@ -133,7 +133,7 @@ public class Account {
      * über der Kreditlinie
      */
     public boolean isBalanceAlert() {
-        return (balance <= (creditLine - (creditLine / 100)));
+        return (this.getCurrentBalance() <= (creditLine - (creditLine / 100)));
     }
 
     /**
@@ -141,7 +141,7 @@ public class Account {
      * Betrags den Kontostand unterhalb der Kreditlinie führt.
      */
     public boolean isOverdrawAmount(double amount) {
-        return ((balance - amount) <= creditLine);
+        return ((this.getCurrentBalance() + amount) <= creditLine);
     }
 
     /**
@@ -149,8 +149,7 @@ public class Account {
      * @return transactions
      */
     public Transaction[] getTransactions() {
-        throw new UnsupportedOperationException("Not yet implemented");
-        //TODO getTransactions()
+        return this.transactions;
     }
 
     /**
@@ -158,8 +157,7 @@ public class Account {
      * @return transactionPointer
      */
     public int getTransactionPointer() {
-        throw new UnsupportedOperationException("Not yet implemented");
-        //TODO getTransactionPointer()
+        return this.transactionPointer;
     }
 
     /**
@@ -167,8 +165,13 @@ public class Account {
      * @return currentBalance
      */
     public double getCurrentBalance() {
-        throw new UnsupportedOperationException("Not yet implemented");
-        //TODO getCurrentBalance()
+        double currentBalance = this.getBalance();
+        for (int i = 0; i < this.getTransactionPointer(); i++) {
+			if(this.transactions[i] != null){
+				currentBalance = this.transactions[i].getAmount() + currentBalance;
+			}
+		}
+        return currentBalance;
     }
 
     /**
@@ -177,24 +180,44 @@ public class Account {
      * @param text
      */
     public void book(double amount, String text) {
-        throw new UnsupportedOperationException("Not yet implemented");
-        //TODO book(double amount, String text)
+    	Transaction transaction = new Transaction();
+    	transaction.setAmount(amount);
+    	transaction.setText(text);
+    	this.transactions[this.transactionPointer] = transaction;
+    	this.transactionPointer++;
     }
 
     /**
      * Aktualisiert das Attribut balance mit Hilfe der transactions
      */
     public void updateBalance() {
-        throw new UnsupportedOperationException("Not yet implemented");
-        //TODO updateBalance()
+        this.balance = this.getCurrentBalance();
+        this.transactions = new Transaction[50];
+        this.transactionPointer = 0;
     }
 
     /**
      * Gibt den Kontoauszug aus
      */
     public void printAccountStatement() {
-        throw new UnsupportedOperationException("Not yet implemented");
-        //TODO printAccountStatement()
+        Transaction tempTransaction = null;
+        double tempBalance = this.getBalance();
+        
+        System.out.println("Kontoauszug fuer : " + this.getOwner().getFirstName()
+        		+ " " + this.getOwner().getLastName());
+        System.out.println("Kontonummer     : " + this.getId());
+        System.out.println();
+        System.out.println("Kontostand zu Beginn: " + this.getBalance());
+        
+        for (int i = 0; i < this.getTransactionPointer(); i++) {
+        	tempTransaction = this.getTransactions()[i];
+        	tempBalance = tempBalance + tempTransaction.getAmount();
+        	
+        	System.out.println(tempTransaction.getDate() + " " +
+        			tempTransaction.getText() + " " +
+        			tempTransaction.getAmount() + " " +
+        			tempBalance);
+		}
     }
 
     /**
