@@ -81,7 +81,7 @@ public class Customer {
      */
     @Override
     public String toString() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return this.firstName + " " + this.lastName;
     }
 
     /**
@@ -89,7 +89,7 @@ public class Customer {
      * @return int
      */
     public int nameLength() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return this.toString().length();
     }
 
     @Override

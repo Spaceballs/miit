@@ -1,5 +1,8 @@
 package de.hdm.bankProject.data;
 
+import org.apache.derby.iapi.services.io.NewByteArrayInputStream;
+import org.apache.derby.iapi.sql.execute.TemporaryRowHolder;
+
 /**
  * Klasse der Bankkonten
  * @author Thies
@@ -232,7 +235,39 @@ public class Account {
      * produziert den Kontoauszug als String
      */
     public String getAccountStatement() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    	StringBuffer ergebnis = new StringBuffer();
+    	
+    	Transaction tempTransaction = null;
+        double tempBalance = this.getBalance();
+
+        ergebnis.append("Kontoauszug fuer : " + this.getOwner().getFirstName() + " " + this.getOwner().getLastName() + "\n");
+        ergebnis.append("Kontonummer      : " + this.getId() + "\n");
+        ergebnis.append("\n");
+        ergebnis.append("Kontostand zu Beginn: " + normalizeDoubleValue(this.getBalance()) + "\n");
+
+        for (int i = 0; i < this.getTransactionPointer(); i++) {
+            tempTransaction = this.getTransactions()[i];
+            tempBalance = tempBalance + tempTransaction.getAmount();
+            
+            ergebnis.append(tempTransaction.getDate());
+            ergebnis.append("\n");
+            String tempString = tempTransaction.getText();
+            if (tempString.length() <= 20) {
+            	while (tempString.length() < 20) {
+            		tempString += " ";					
+				}
+			} else {
+				tempString.substring(0, 20);
+			}
+            ergebnis.append(tempString);
+			ergebnis.append("\n");
+			ergebnis.append(normalizeDoubleValue(tempTransaction.getAmount()));
+			ergebnis.append("\n");
+			ergebnis.append(normalizeDoubleValue(tempBalance));
+			ergebnis.append("\n" + "\n");
+        }
+        
+        return ergebnis.toString();
     }
 
     /**
@@ -253,4 +288,21 @@ public class Account {
         }
         return false;
     }
+    
+    /**
+     * 
+     */
+    public String normalizeDoubleValue(double number) {
+		StringBuffer stringBuffer = new StringBuffer(String.valueOf(number));
+		String tempString = stringBuffer.substring(stringBuffer.lastIndexOf(".") + 1);
+		
+		if (tempString.length() == 0) {
+			return stringBuffer + "00";
+		} else if (tempString.length() < 2) {
+			return stringBuffer + "0";
+		} else if (tempString.length() > 2) {
+			return stringBuffer.substring(0, stringBuffer.lastIndexOf(".") + 3);
+		}
+		return stringBuffer.toString();
+	}
 }

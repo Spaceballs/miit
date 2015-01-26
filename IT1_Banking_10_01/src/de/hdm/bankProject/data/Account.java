@@ -35,6 +35,19 @@ public class Account {
      */
     private int transactionPointer = 0;
 
+    /**
+     * 
+     */
+    public final static int EUR = 0;
+    public final static int CHF = 1;
+    public final static int USD = 2;
+    public final static int YEN = 3;
+    /**
+     * 
+     */
+    private int currency = 0;
+    
+    
     public Account() {
     }
 
@@ -43,7 +56,8 @@ public class Account {
     }
 
     public Account(Customer owner, int currency) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        this.owner = owner;
+        this.currency = currency;
     }
 
     /**
@@ -218,13 +232,16 @@ public class Account {
 
         result.append("Kontoauszug fuer : " + this.getOwner() + "\n");
         result.append("Kontonummer : " + this.getId() + "\n");
+        result.append("Waehrung : " + this.getCurrencyAsString());
         result.append("\n");
         result.append("Kontostand zu Beginn: " + this.normalizeDoubleValue(this.getBalance()) + "\n");
 
         for (int i = 0; i < this.getTransactionPointer(); i++) {
             tempTransaction = this.getTransactions()[i];
             tempBalance = tempBalance + tempTransaction.getAmount();
-
+            
+            result.append(tempTransaction.getTransactionId());
+            result.append(": ");
             result.append(tempTransaction.getDate());
             result.append(" ");
 
@@ -269,7 +286,7 @@ public class Account {
      * @return Waehrungsbezeichnung für dieses Konto
      */
     public String getCurrencyAsString() {
-        return "";
+        return currencyToString(this.currency);
     }
 
     /**
@@ -290,4 +307,34 @@ public class Account {
         }
         return false;
     }
+
+	/**
+	 * @return the currency
+	 */
+	public int getCurrency() {
+		return currency;
+	}
+
+	/**
+	 * @param currency the currency to set
+	 */
+	public void setCurrency(int currency) {
+		this.currency = currency;
+	}
+    
+    private static String currencyToString (int currency){
+    	switch (currency){
+    	case EUR:
+    		return "EUR";
+    	case CHF:
+    		return "CHF";
+		case USD:
+    		return "USD";
+		case YEN:
+    		return "Yen";
+		default:
+    		return Integer.toString(currency);
+    	}
+    }
+    
 }
