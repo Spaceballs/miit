@@ -4,7 +4,7 @@ package de.hdm.bankProject.data;
  * Klasse der Bankkonten
  * @author Thies
  */
-public class Account {
+public class Account implements Cloneable{
 
     /**
      * Kontonummer
@@ -322,17 +322,36 @@ public class Account {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (obj == null) {
+        	return false;			
+		}
+        if (getClass() != obj.getClass()) {
+        	return false;
+        }
+        final Account a = (Account) obj;
+        if (this.id != a.id) {
+			return false;
+		}
+        if (this.balance != a.balance){
+        	return false;
+        }
+        if (!this.getOwner().equals(a.getOwner())) {
+			return false;
+		}
+        if (this.currency != a.currency) {
+			return false;
+		}
+        return true;
     }
 
     @Override
     public int hashCode() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return this.getId();
     }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        throw new UnsupportedOperationException("Not yet implemented");
+        return super.clone();
     }
 }
 

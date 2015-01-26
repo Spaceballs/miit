@@ -7,7 +7,7 @@ import java.util.Vector;
  * @see Bank
  * @author Thies
  */
-public class Bank {
+public class Bank implements Cloneable {
 
     /**
      * Bankleitzahl
@@ -204,7 +204,7 @@ public class Bank {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
-        throw new UnsupportedOperationException("Not yet implemented");
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }
